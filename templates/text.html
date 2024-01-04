@@ -1,0 +1,446 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    
+    <header class="site-navbar py-4 absolute transparent" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+
+          <div class="col-3" data-aos="fade-down">
+            <h1><a href="#" class="text-white h2">Podca</a></h1>
+          </div>
+          <div class="col-9" data-aos="fade-down">
+            <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
+
+                
+
+                <div class="d-inline-block ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+                <ul class="site-menu js-clone-nav d-none">
+                  <li class="has-children active">
+                    <a href="{% url 'index' %}">Home</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="#">Menu One</a></li>
+                      <li><a href="#">Menu Two</a></li>
+                      <li><a href="#">Menu Three</a></li>
+                      <li class="has-children">
+                        <a href="#">Sub Menu</a>
+                        <ul class="dropdown">
+                          <li><a href="#">Menu One</a></li>
+                          <li><a href="#">Menu Two</a></li>
+                          <li><a href="#">Menu Three</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="has-children">
+                    <a href="#">Dropdown</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="#">Menu One</a></li>
+                      <li><a href="#">Menu Two</a></li>
+                      <li><a href="#">Menu Three</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{% url 'about' %}">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+
+          </div>
+
+        </div>
+      </div>
+      
+    </header>
+  
+    <div class="site-blocks-cover overlay"  style="background-image: url({{image}});" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+          
+            <h2 class="text-white font-weight-light mb-2 display-4"></h2>
+            <div class="text-white mb-4"><span class="text-white-opacity-05"><small></small></span></div>
+            <p><a href="" class="btn btn-primary btn-sm py-3 px-4 small">Read The Transcript</a></p>
+          
+            <div class="player">
+              <audio id="player2" "preload="none" controls style="max-width: 100%">
+                <source src="" alt="" type="audio/mp3">
+              </audio>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>  
+      
+    
+    <div class="site-section bg-light">
+      <div class="container">
+        
+        <div class="row mb-5" data-aos="fade-up">
+          <div class="col-md-12 text-center">
+            <h2 class="font-weight-bold text-black">Recent Podcasts</h2>
+            {% for row in top_views %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+          <div class="image" style="background-image: url({{row.news_image.url}});"></div>
+          
+          <div class="text">
+
+            <h3 class="font-weight-light"><a href="{% url 'single' row.id %}">{{row.title}}{{row.description}}</a></h3>
+            <div class="text-white mb-3"><span class="text-black-opacity-05"><small>{{row.author}} <span class="sep">/</span> {{news.created_at}}</p>
+
+            <div class="player">
+              <audio id="player2" preload="none" controls style="max-width: 100%">{{row.audio_file.url}}
+                <source src="{{row.audio_file.url}}" type="audio/mp3">
+              </audio>
+            </div>
+          </div>
+          <a href="{% url 'single' row.id %}" class="image">{{row.counter}}</a>
+          </div>
+        </div>
+
+        {% endfor %}
+        <!-- <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+          <div class="image" style="background-image: url('images/img_2.jpg');"></div>
+          <div class="text">
+
+            <h3 class="font-weight-light"><a href="single-post.html">Episode 07: How To Create Web Page Using Bootstrap 4</a></h3>
+            <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+
+            <div class="player">
+              <audio id="player2" preload="none" controls style="max-width: 100%">
+                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+              </audio>
+            </div>
+
+          </div>
+        </div>
+
+
+         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url('images/img_3.jpg');"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="single-post.html">Episode 06: How To Create Web Page Using Bootstrap 4</a></h3>
+              <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url('images/img_4.jpg');"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="single-post.html">Episode 05: How To Create Web Page Using Bootstrap 4</a></h3>
+              <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url('images/img_5.jpg');"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="single-post.html">Episode 04: How To Create Web Page Using Bootstrap 4</a></h3>
+              <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>-->
+          
+      
+      </div>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+        
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+               
+                <li><a href="?page={{previous_page}}">&lt;</a></li>
+                {% for i in paginator.page_range %}
+                <li class="{% if i == page_number %}active{% endif %}"><span>1</span></li>
+                <li><a href="?page={{i}}">{{i}}</a></li>
+                <!--<a href="?page={{i}}">{{i}}</a></li>
+                <li><a href="?page={{i}}">{{i}}</a></li>
+                <li><a href="?page={{i}}">{{i}}</a></li>-->
+                {% endfor %}
+                <li><a href="?page={{next_page}}">&gt;</a></li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section">
+      <div class="container" data-aos="fade-up">
+        <div class="row mb-5">
+          <div class="col-md-12 text-center">
+            <h2 class="font-weight-bold text-black">Behind The Mic</h2>
+             
+          </div>
+         </div>
+         {% for user in users %} 
+       <div class="row">
+        <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+              <img src="{{user.avatar.url}}"  alt="Image" class="img-fluid">
+              
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">{{user.fillname}}</h2>
+                <span class="d-block mb-2 text-white-opacity-05">{{user.status}}</span>
+                <p class="mb-4">{{user.description}}</p>
+                <p>
+                 <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+           
+          <!--<div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="{{user.avatar.url}}" alt="Image" class="img-fluid">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">{{user.fillname}}</h2>
+                <span class="d-block mb-2 text-white-opacity-05">{{user.status}}</span>
+                <p class="mb-4">{{user.description}}</p>
+                <p>
+                  <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>-->
+
+         <!-- <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="images/person_3.jpg" alt="Image" class="img-fluid">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">Philip Martin</h2>
+                <span class="d-block mb-2 text-white-opacity-05">Creative Director</span>
+                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit ullam reprehenderit nemo.</p>
+                <p>
+                  <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="images/person_4.jpg" alt="Image" class="img-fluid">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">Steven Ericson</h2>
+                <span class="d-block mb-2 text-white-opacity-05">Creative Director</span>
+                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit ullam reprehenderit nemo.</p>
+                <p>
+                  <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="images/person_5.jpg" alt="Image" class="img-fluid">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">Nathan Dumlao</h2>
+                <span class="d-block mb-2 text-white-opacity-05">Creative Director</span>
+                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit ullam reprehenderit nemo.</p>
+                <p>
+                  <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="images/person_6.jpg" alt="Image" class="img-fluid">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light h4">Brooke Cagle</h2>
+                <span class="d-block mb-2 text-white-opacity-05">Creative Director</span>
+                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit ullam reprehenderit nemo.</p>
+                <p>
+                  <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                  <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+                </p>
+              </div>
+
+            </div>
+          </div>-->
+          {% endfor %}
+        </div>
+      </div>
+    </div> 
+      
+    <div class="site-section bg-light block-13">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12 text-center">
+            <h2 class="font-weight-bold text-black">Featured Guests</h2>
+          </div>
+        </div>
+        
+        <div class="nonloop-block-13 owl-carousel">
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5"></h3>
+              <p></p>
+            </div>
+          </div>
+
+      <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="images/person_2.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5">Brooke Cagle</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
+            </div>
+          </div>
+
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="images/person_3.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5">Philip Martin</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
+            </div>
+          </div>
+
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="images/person_4.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5">Steven Ericson</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
+            </div>
+          </div>
+
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="images/person_5.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5">Nathan Dumlao</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
+            </div>
+          </div>
+
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="images/person_6.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5">Brook Smith</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
+            </div>
+          </div>
+         
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(images/);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <h2>Subscribe</h2>
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit nihil saepe libero sit odio obcaecati veniam.</p>
+            <form action="#" method="post" class="site-block-subscribe">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="button-addon2">Send</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+    
+{% endblock %}
